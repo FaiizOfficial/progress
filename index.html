@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Gaming Progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -37,6 +38,7 @@
       scroll-snap-align: start;
       text-align: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: relative;
     }
 
     .day-container img {
@@ -49,6 +51,17 @@
       margin-top: 10px;
       font-size: 1.5em;
       color: #ff69b4;
+    }
+
+    .emoji-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5em;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 4px 6px;
+      border-radius: 10px;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
@@ -64,17 +77,26 @@
   <div class="container">
     <!-- Hari 1 -->
     <div class="day-container">
+      <div class="emoji-tag">❤❤</div>
       <img src="1.jpg" alt="Day One">
       <h2>DAY ONE</h2>
     </div>
-    <!-- Hari 2 -->
+    <!-- Hari 3 -->
     <div class="day-container">
+      <div class="emoji-tag">🤗🤗</div>
       <img src="4.jpg" alt="Day Three">
       <h2>DAY THREE</h2>
     </div>
-    <!-- Tambahkan Hari Baru di Sini -->
+    <!-- Hari 4 -->
+    <div class="day-container">
+      <div class="emoji-tag">😙😙</div>
+      <img src="5.jpg" alt="Day Four">
+      <h2>DAY FOUR</h2>
+    </div>
+    <!-- Tambahkan Hari Baru -->
     <!--
     <div class="day-container">
+      <div class="emoji-tag">💖🎧</div>
       <img src="day3.png" alt="Day Three">
       <h2>DAY THREE</h2>
     </div>
