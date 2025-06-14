@@ -18,7 +18,34 @@
       overflow-x: hidden;
     }
 
-    audio {
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .login-container input {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ff69b4;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .login-container button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .hidden {
       display: none;
     }
 
@@ -64,7 +91,6 @@
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     }
 
-    /* Tombol play jika autoplay gagal */
     .play-button {
       position: fixed;
       bottom: 20px;
@@ -88,16 +114,57 @@
     Your browser does not support the audio element.
   </audio>
 
+  <!-- Form Password -->
+  <div id="login" class="login-container">
+    <h2>🔒 Masukkan Sandi untuk Melihat Galeri</h2>
+    <input type="password" id="password" placeholder="Masukkan sandi..." />
+    <button onclick="checkPassword()">Masuk</button>
+  </div>
+
+  <!-- Konten Galeri -->
+  <div id="content" class="hidden">
+    <div class="container">
+      <div class="day-container">
+        <div class="emoji-tag">❤❤</div>
+        <img src="1.jpg" alt="Day One">
+        <h2>DAY ONE</h2>
+      </div>
+
+      <div class="day-container">
+        <div class="emoji-tag">🤗🤗</div>
+        <img src="4.jpg" alt="Day Three">
+        <h2>DAY THREE</h2>
+      </div>
+
+      <div class="day-container">
+        <div class="emoji-tag">😙😙</div>
+        <img src="5.jpg" alt="Day Four">
+        <h2>DAY FOUR</h2>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const correctPassword = "0212"; // Ganti dengan sandi kamu
+
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === correctPassword) {
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("content").classList.remove("hidden");
+        document.getElementById("bg-music").play();
+      } else {
+        alert("Sandi salah! Coba lagi.");
+      }
+    }
+
+    // Autoplay fallback jika ditolak browser
     window.addEventListener('DOMContentLoaded', () => {
       const audio = document.getElementById('bg-music');
-
-      // Coba mainkan musik saat halaman dimuat
       const tryPlay = audio.play();
 
       if (tryPlay !== undefined) {
         tryPlay.catch(() => {
-          // Kalau autoplay gagal, munculkan tombol
           const btn = document.createElement('button');
           btn.textContent = "▶️ Play Music";
           btn.className = "play-button";
@@ -110,27 +177,6 @@
       }
     });
   </script>
-
-  <!-- Galeri Harian -->
-  <div class="container">
-    <div class="day-container">
-      <div class="emoji-tag">❤❤</div>
-      <img src="1.jpg" alt="Day One">
-      <h2>DAY ONE</h2>
-    </div>
-
-    <div class="day-container">
-      <div class="emoji-tag">🤗🤗</div>
-      <img src="4.jpg" alt="Day Three">
-      <h2>DAY THREE</h2>
-    </div>
-
-    <div class="day-container">
-      <div class="emoji-tag">😙😙</div>
-      <img src="5.jpg" alt="Day Four">
-      <h2>DAY FOUR</h2>
-    </div>
-  </div>
 
 </body>
 </html>
