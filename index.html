@@ -63,44 +63,73 @@
       border-radius: 10px;
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     }
+
+    /* Tombol play jika autoplay gagal */
+    .play-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
 
   <!-- Musik Latar -->
-  <audio autoplay loop>
-    <source src="11.mp3" type="audio/mp3">
+  <audio id="bg-music" autoplay loop>
+    <source src="11.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('bg-music');
+
+      // Coba mainkan musik saat halaman dimuat
+      const tryPlay = audio.play();
+
+      if (tryPlay !== undefined) {
+        tryPlay.catch(() => {
+          // Kalau autoplay gagal, munculkan tombol
+          const btn = document.createElement('button');
+          btn.textContent = "▶️ Play Music";
+          btn.className = "play-button";
+          btn.onclick = () => {
+            audio.play();
+            btn.remove();
+          };
+          document.body.appendChild(btn);
+        });
+      }
+    });
+  </script>
+
   <!-- Galeri Harian -->
   <div class="container">
-    <!-- Hari 1 -->
     <div class="day-container">
       <div class="emoji-tag">❤❤</div>
       <img src="1.jpg" alt="Day One">
       <h2>DAY ONE</h2>
     </div>
-    <!-- Hari 3 -->
+
     <div class="day-container">
       <div class="emoji-tag">🤗🤗</div>
       <img src="4.jpg" alt="Day Three">
       <h2>DAY THREE</h2>
     </div>
-    <!-- Hari 4 -->
+
     <div class="day-container">
       <div class="emoji-tag">😙😙</div>
       <img src="5.jpg" alt="Day Four">
       <h2>DAY FOUR</h2>
     </div>
-    <!-- Tambahkan Hari Baru -->
-    <!--
-    <div class="day-container">
-      <div class="emoji-tag">💖🎧</div>
-      <img src="day3.png" alt="Day Three">
-      <h2>DAY THREE</h2>
-    </div>
-    -->
   </div>
 
 </body>
