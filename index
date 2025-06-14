@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Gaming Progress</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="background.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <!-- Tambahkan div .day-container untuk setiap hari -->
+    <div class="day-container">
+      <img src="1.png" alt="Day One">
+      <h2>DAY ONE</h2>
+    </div>
+    <div class="day-container">
+      <img src="2.png" alt="Day Two">
+      <h2>DAY TWO</h2>
+    </div>
+    <!-- Tambahkan lebih banyak .day-container jika ada update harian -->
+  </div>
+</body>
+</html>
