@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Gaming Progress</title>
+  <title>Love Gallery</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
   <style>
     * {
@@ -15,33 +15,51 @@
     body {
       background-color: #ffc0cb;
       font-family: 'Fredoka', sans-serif;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    .login-container {
+    /* Splash Gambar Awal */
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: url('0.png') center center/cover no-repeat;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
+      z-index: 10;
     }
 
-    .login-container input {
+    .popup {
+      background: rgba(255,255,255,0.85);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 90%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .popup h2 {
+      font-size: 1.6em;
+      margin-bottom: 15px;
+    }
+
+    .popup input {
       padding: 10px;
       font-size: 16px;
       border: 2px solid #ff69b4;
-      border-radius: 8px;
-      margin-top: 10px;
+      border-radius: 10px;
+      width: 80%;
+      margin-bottom: 10px;
     }
 
-    .login-container button {
-      margin-top: 10px;
+    .popup button {
       padding: 10px 20px;
       background-color: #ff69b4;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-size: 16px;
       cursor: pointer;
     }
 
@@ -49,6 +67,7 @@
       display: none;
     }
 
+    /* Galeri */
     .container {
       display: flex;
       overflow-x: auto;
@@ -91,6 +110,7 @@
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     }
 
+    /* Tombol musik jika autoplay gagal */
     .play-button {
       position: fixed;
       bottom: 20px;
@@ -108,20 +128,23 @@
 </head>
 <body>
 
-  <!-- Musik Latar -->
+  <!-- Musik -->
   <audio id="bg-music" autoplay loop>
     <source src="11.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+    Browsermu tidak mendukung musik.
   </audio>
 
-  <!-- Form Password -->
-  <div id="login" class="login-container">
-    <h2>🔒 Masukkan Sandi untuk Melihat Galeri</h2>
-    <input type="password" id="password" placeholder="Masukkan sandi..." />
-    <button onclick="checkPassword()">Masuk</button>
+  <!-- Splash Screen + Password -->
+  <div id="splash">
+    <div class="popup">
+      <h2>SANDINYA APA SAYANGGG??? 😚</h2>
+      <input type="password" id="password" placeholder="Masukkan sandi...">
+      <br>
+      <button onclick="checkPassword()">Masuk</button>
+    </div>
   </div>
 
-  <!-- Konten Galeri -->
+  <!-- Galeri -->
   <div id="content" class="hidden">
     <div class="container">
       <div class="day-container">
@@ -129,13 +152,11 @@
         <img src="1.jpg" alt="Day One">
         <h2>DAY ONE</h2>
       </div>
-
       <div class="day-container">
         <div class="emoji-tag">🤗🤗</div>
         <img src="4.jpg" alt="Day Three">
         <h2>DAY THREE</h2>
       </div>
-
       <div class="day-container">
         <div class="emoji-tag">😙😙</div>
         <img src="5.jpg" alt="Day Four">
@@ -145,20 +166,20 @@
   </div>
 
   <script>
-    const correctPassword = "0212"; // Ganti dengan sandi kamu
+    const correctPassword = "0212";
 
     function checkPassword() {
       const input = document.getElementById("password").value;
       if (input === correctPassword) {
-        document.getElementById("login").classList.add("hidden");
+        document.getElementById("splash").classList.add("hidden");
         document.getElementById("content").classList.remove("hidden");
         document.getElementById("bg-music").play();
       } else {
-        alert("Sandi salah! Coba lagi.");
+        alert("Salah sayang 😜 coba lagi yaa~");
       }
     }
 
-    // Autoplay fallback jika ditolak browser
+    // Autoplay fallback
     window.addEventListener('DOMContentLoaded', () => {
       const audio = document.getElementById('bg-music');
       const tryPlay = audio.play();
