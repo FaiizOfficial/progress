@@ -27,7 +27,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 10;
+      z-index: 999;
     }
 
     .popup {
@@ -110,7 +110,6 @@
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     }
 
-    /* Tombol musik jika autoplay gagal */
     .play-button {
       position: fixed;
       bottom: 20px;
@@ -134,7 +133,7 @@
     Browsermu tidak mendukung musik.
   </audio>
 
-  <!-- Splash Screen + Password -->
+  <!-- Splash Screen -->
   <div id="splash">
     <div class="popup">
       <h2>SANDINYA APA SAYANGGG??? 😚</h2>
@@ -171,20 +170,22 @@
     function checkPassword() {
       const input = document.getElementById("password").value;
       if (input === correctPassword) {
-        document.getElementById("splash").classList.add("hidden");
+        // Hapus splash agar tidak menutup konten
+        const splash = document.getElementById("splash");
+        if (splash) splash.remove();
+
         document.getElementById("content").classList.remove("hidden");
 
         try {
           document.getElementById("bg-music").play();
         } catch (e) {
-          console.warn("Autoplay gagal, lanjut tanpa musik.");
+          console.warn("Autoplay gagal.");
         }
       } else {
         alert("Salah sayang 😜 coba lagi yaa~");
       }
     }
 
-    // Autoplay fallback jika autoplay gagal
     window.addEventListener('DOMContentLoaded', () => {
       const audio = document.getElementById('bg-music');
       const tryPlay = audio.play();
