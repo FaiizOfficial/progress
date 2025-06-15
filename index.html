@@ -173,13 +173,18 @@
       if (input === correctPassword) {
         document.getElementById("splash").classList.add("hidden");
         document.getElementById("content").classList.remove("hidden");
-        document.getElementById("bg-music").play();
+
+        try {
+          document.getElementById("bg-music").play();
+        } catch (e) {
+          console.warn("Autoplay gagal, lanjut tanpa musik.");
+        }
       } else {
         alert("Salah sayang 😜 coba lagi yaa~");
       }
     }
 
-    // Autoplay fallback
+    // Autoplay fallback jika autoplay gagal
     window.addEventListener('DOMContentLoaded', () => {
       const audio = document.getElementById('bg-music');
       const tryPlay = audio.play();
